@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { memo } from "react";
+import { Link } from "../styles/StyledComponents";
+import { Box, Stack, Typography } from "@mui/material";
 
 const ChatItem = ({
   avatar = [],
@@ -8,11 +9,50 @@ const ChatItem = ({
   groupChat = false,
   sameSender,
   isOnline,
-  newMessage,
+  newMessageAlert,
   index = 0,
   handleDeleteChatOpen,
 }) => {
-  return <Link to={"/"}></Link>;
+  return (
+    <Link
+      to={`/chat/${_id}`}
+      onContextMenu={(e) => handleDeleteChatOpen(e, _id, groupChat)}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+          padding: "1rem",
+          backgroundColor: sameSender ? "black" : "unset",
+          color: sameSender ? "white" : "unset",
+          position: "relative",
+        }}
+      >
+        // avatar cart
+        <Stack>
+          <Typography>{name}</Typography>
+          {newMessageAlert && (
+            <Typography>{newMessageAlert.count} New Message</Typography>
+          )}
+        </Stack>
+        {isOnline && (
+          <Box
+            sx={{
+              width: "10px",
+              height: "10px",
+              borderRadius: "50%",
+              position: "absolute",
+              backgroundColor: "green",
+              top: "50%",
+              right: "1rem",
+              transform: "translateY(-50%)",
+            }}
+          />
+        )}
+      </div>
+    </Link>
+  );
 };
 
-export default ChatItem;
+export default memo(ChatItem);
