@@ -1,11 +1,20 @@
 export const sampleChats = [
   {
     avatar: [
-      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-png-vectors%2Favatar&psig=AOvVaw0EMFs9M9TGiEpQtmouSIwx&ust=1709215927925000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCNDT8NWbzoQDFQAAAAAdAAAAABAE",
+      "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
     ],
     name: "John Doe",
     _id: "1",
     groupChat: false,
+    members: ["1", "2"],
+  },
+  {
+    avatar: [
+      "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
+    ],
+    name: "John Boi",
+    _id: "2",
+    groupChat: true,
     members: ["1", "2"],
   },
 ];
