@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 import moment from "moment";
 import React, { memo } from "react";
@@ -28,7 +28,26 @@ const MessageComponent = ({ message, user }) => {
       )}
       {content && <Typography>{content}</Typography>}
 
-      <Typography>{timeAgo}</Typography>
+      {attachments.light > 0 &&
+        attachments.map((attach, index) => {
+          const url = attachments.url;
+          const file = "sasd";
+
+          return (
+            <Box key={index}>
+              <a
+                href=""
+                target="_blank"
+                download
+                style={{ color: "black" }}
+              ></a>
+            </Box>
+          );
+        })}
+
+      <Typography variant="caption" color={"text.secondary"}>
+        {timeAgo}
+      </Typography>
     </div>
   );
 };
