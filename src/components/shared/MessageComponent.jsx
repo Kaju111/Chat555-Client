@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 import moment from "moment";
 import React, { memo } from "react";
+import { fileFormet } from "../../lib/features";
+import RenderAttachment from "./RenderAttachment";
 
 const MessageComponent = ({ message, user }) => {
   const { sender, content, attachments = [], createdAt } = message;
@@ -28,19 +30,16 @@ const MessageComponent = ({ message, user }) => {
       )}
       {content && <Typography>{content}</Typography>}
 
-      {attachments.light > 0 &&
+      {attachments.length > 0 &&
         attachments.map((attach, index) => {
-          const url = attachments.url;
-          const file = "sasd";
+          const url = attach.url;
+          const file = fileFormet(url);
 
           return (
             <Box key={index}>
-              <a
-                href=""
-                target="_blank"
-                download
-                style={{ color: "black" }}
-              ></a>
+              <a href="" target="_blank" download style={{ color: "black" }}>
+                {RenderAttachment(file, url)}
+              </a>
             </Box>
           );
         })}

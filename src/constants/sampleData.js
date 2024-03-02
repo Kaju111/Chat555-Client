@@ -57,12 +57,7 @@ export const sampleNotifications = [
 
 export const sampleMessage = [
   {
-    attachments: [
-      {
-        public_id: "oaknla",
-        url: "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
-      },
-    ],
+    attachments: [],
     content: "Biki message",
     _id: "fsdsfdsrdsfd",
     sender: {
@@ -79,7 +74,7 @@ export const sampleMessage = [
         url: "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
       },
     ],
-    content: "Biki message",
+    content: "",
     _id: "fsdsfdsrdsfdaa",
     sender: {
       _id: "jjkjajkskaj",
