@@ -7,7 +7,7 @@ import { LayoutLoader } from "./components/layout/Loaders";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Chat = lazy(() => import("./pages/Chat"));
-const Groups = lazy(() => "./pages/Groups");
+const Groups = lazy(() => import("./pages/Groups"));
 
 let user = true;
 

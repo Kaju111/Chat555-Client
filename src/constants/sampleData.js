@@ -71,7 +71,7 @@ export const sampleMessage = [
     attachments: [
       {
         public_id: "oaknla 2",
-        url: "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
+        url: "https://miro.medium.com/v2/resize:fit:600/1*NZ1j7rFDmd1jg5zFyYPcDg.jpeg",
       },
     ],
     content: "",
