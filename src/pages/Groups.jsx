@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import {
   Box,
   Drawer,
   Grid,
   IconButton,
   Stack,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { grop, matBlack } from "../constants/color";
 import {
+  Done as DoneIcon,
+  Edit as EditIcon,
   KeyboardBackspace as KeyboardBackspaceIcon,
   Menu as MenuIcon,
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link } from "../components/styles/StyledComponents";
+import AvatarCard from "../components/shared/AvatarCard";
+import { sampleChats } from "../constants/sampleData";
 
 const Groups = () => {
+  const chatId = useSearchParams()[0].get("group");
   const navigate = useNavigate();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState();
+
+  const [isEdit, setIsEdit] = useState(false);
 
   const navigateBack = () => {
     navigate("/");
@@ -30,6 +39,11 @@ const Groups = () => {
 
   const handleMobileClose = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const updateGroupName = () => {
+    setIsEdit(false);
+    console.log("update");
   };
 
   const IconBtns = (
@@ -72,6 +86,32 @@ const Groups = () => {
     </>
   );
 
+  const GroupName = (
+    <Stack
+      direction={"row"}
+      alignItems={"center"}
+      justifyItems={"center"}
+      spacing={"1rem"}
+      padding={"3rem"}
+    >
+      {isEdit ? (
+        <>
+          <TextField />
+          <IconButton onClick={updateGroupName}>
+            <DoneIcon />
+          </IconButton>
+        </>
+      ) : (
+        <>
+          <Typography variant="h4">Group Name</Typography>
+          <IconButton onClick={() => setIsEdit(true)}>
+            <EditIcon />
+          </IconButton>
+        </>
+      )}
+    </Stack>
+  );
+
   return (
     <Grid container height={"100vh"}>
       <Grid
@@ -85,7 +125,7 @@ const Groups = () => {
         sm={4}
         bgcolor={grop}
       >
-        <GroupList />
+        <GroupList myGroups={sampleChats} chatId={chatId} />
       </Grid>
       <Grid
         item
@@ -100,6 +140,8 @@ const Groups = () => {
         }}
       >
         {IconBtns}
+
+        {GroupName}
       </Grid>
 
       <Drawer
@@ -112,22 +154,42 @@ const Groups = () => {
         open={isMobileMenuOpen}
         onClose={handleMobileClose}
       >
-        <GroupList w={"50vw"} />
+        <GroupList w={"50vw"} myGroups={sampleChats} chatId={chatId} />
       </Drawer>
     </Grid>
   );
 };
 
-const GroupList = ({ w = "100%", myGroups = [], chatId }) => {
-  <Stack>
+const GroupList = ({ w = "100%", myGroups = [], chatId }) => (
+  <Stack width={w}>
     {myGroups.length > 0 ? (
-      myGroups.map((grop) => {})
+      myGroups.map((group) => (
+        <GroupListItem group={group} chatId={chatId} key={group._id} />
+      ))
     ) : (
       <Typography textAlign={"center"} padding="1rem">
         No groups
       </Typography>
     )}
-  </Stack>;
-};
+  </Stack>
+);
+
+const GroupListItem = memo(({ group, chatId }) => {
+  const { name, avatar, _id } = group;
+
+  return (
+    <Link
+      to={`?group=${_id}`}
+      onClick={(e) => {
+        if (chatId === _id) e.preventDefault();
+      }}
+    >
+      <Stack direction={"row"} spacing={"1rem"} alignItems={"center"}>
+        <AvatarCard avatar={avatar} />
+        <Typography>{name}</Typography>
+      </Stack>
+    </Link>
+  );
+});
 
 export default Groups;
