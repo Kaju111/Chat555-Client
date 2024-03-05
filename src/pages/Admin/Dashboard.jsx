@@ -14,6 +14,7 @@ import {
   SearchField,
 } from "../../components/styles/StyledComponents";
 import { matBlack } from "../../constants/color";
+import { DoughnutChart, LineChart } from "../../components/specific/Charts";
 
 const Dashboard = () => {
   const Appbar = (
@@ -80,7 +81,7 @@ const Dashboard = () => {
               Last Messages
             </Typography>
 
-            {"Chat"}
+            <LineChart />
           </Paper>
 
           <Paper
@@ -98,7 +99,7 @@ const Dashboard = () => {
               height: "25rem",
             }}
           >
-            {"Dougnut Chart"}
+            <DoughnutChart />
 
             <Stack
               position={"absolute"}
