@@ -11,7 +11,13 @@ import {
   ArcElement,
   Legend,
 } from "chart.js";
-import { purple, purpleLight } from "../../constants/color";
+import {
+  orangeDark,
+  orangeLight,
+  purple,
+  purpleLight,
+} from "../../constants/color";
+import { getLast7Days } from "../../lib/features";
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +29,8 @@ ChartJS.register(
   ArcElement,
   Legend
 );
+
+const labels = getLast7Days();
 
 const lineChartOptions = {
   responsive: true,
@@ -52,7 +60,7 @@ const lineChartOptions = {
 
 const LineChart = ({ value = [] }) => {
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels,
     datasets: [
       {
         data: value,
@@ -67,8 +75,36 @@ const LineChart = ({ value = [] }) => {
   return <Line data={data} options={lineChartOptions} />;
 };
 
-const DoughnutChart = () => {
-  return <div>Charts</div>;
+const doughnutChartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  cutout: 120,
+};
+
+const DoughnutChart = ({ value = [], labels = [] }) => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: value,
+        backgroundColor: [purpleLight, orangeLight],
+        borderColor: [purple, orangeDark],
+        offset: 40,
+        hoverBackgroundColor: [purple, orangeDark],
+      },
+    ],
+  };
+  return (
+    <Doughnut
+      style={{ zIndex: 10 }}
+      data={data}
+      options={doughnutChartOptions}
+    />
+  );
 };
 
 export { LineChart, DoughnutChart };
