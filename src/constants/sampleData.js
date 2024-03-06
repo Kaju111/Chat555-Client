@@ -84,3 +84,26 @@ export const sampleMessage = [
     createdAt: "2024-02-29T00:00:00.000Z",
   },
 ];
+
+export const dashboardData = {
+  users: [
+    {
+      name: "John Doe",
+      avatar:
+        "https://miro.medium.com/v2/resize:fit:600/1*NZ1j7rFDmd1jg5zFyYPcDg.jpeg",
+      _id: "1",
+      username: "john_doe",
+      friends: 20,
+      groups: 5,
+    },
+    {
+      name: "John Boi",
+      avatar:
+        "https://miro.medium.com/v2/resize:fit:600/1*NZ1j7rFDmd1jg5zFyYPcDg.jpeg",
+      _id: "2",
+      username: "john_boi",
+      friends: 21,
+      groups: 25,
+    },
+  ],
+};
